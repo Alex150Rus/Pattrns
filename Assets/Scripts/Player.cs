@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Asteroids.ControllableUnit;
 
 namespace Asteroids
 {
@@ -40,6 +41,7 @@ namespace Asteroids
 
             if (Input.GetButtonDown("Fire1"))
             {
+                //стрелять из оружия
                 var temAmmunition = Instantiate(_bullet, _barrel.position, _barrel.rotation);
                 temAmmunition.AddForce(_barrel.up * _force);
             }
