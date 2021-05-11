@@ -7,10 +7,10 @@ namespace Asteroids.Bullet
     {
         private ICreateGameObject _gameObjectCreationImplementation;
         
-        public BulletFactory(IBulletProvider bulletProvider, IBarrelProvider barrelProvider, float force)
+        public BulletFactory(ICreateGameObject gameObjectCreationImplementation)
         {
             _gameObjectCreationImplementation = 
-                new CreateGameObjectWithForce(bulletProvider.Bullet, barrelProvider.Barrel, force);
+                gameObjectCreationImplementation;
         }
         
         public void CreateBullet()
