@@ -27,7 +27,7 @@ namespace Asteroids.ControllableUnit
 
         public void AddAcceleration()
         {
-            if (_moveImplementation is AccelerationMove accelerationMove)
+            if (_moveImplementation is IAccelerationMove accelerationMove)
             {
                 accelerationMove.AddAcceleration();
             }
@@ -35,7 +35,7 @@ namespace Asteroids.ControllableUnit
 
         public void RemoveAcceleration()
         {
-            if (_moveImplementation is AccelerationMove accelerationMove)
+            if (_moveImplementation is IAccelerationMove accelerationMove)
             {
                 accelerationMove.RemoveAcceleration();
             }

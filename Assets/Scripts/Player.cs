@@ -25,9 +25,11 @@ namespace Asteroids
         private void Start()
         {
             _camera = Camera.main;
-            var moveTransform = new AccelerationMove(transform, _speed, _acceleration);
+            var rigidbody2D = GetComponent<Rigidbody2D>();
+            var movePhysics = new AccelerationPhysicsMove(rigidbody2D, _acceleration);
+            
             var rotation = new RotationShip(transform);
-            _ship = new Ship(moveTransform, rotation);
+            _ship = new Ship(movePhysics, rotation);
 
             var objectCreateImplementation = new CreateGameObjectWithForce(
                 new BulletProvider(_bullet).Bullet,
@@ -50,6 +52,11 @@ namespace Asteroids
         private void Update()
         {
             _inputController.Execute(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            _inputController.FixedExecute();
         }
 
         private void OnCollisionEnter2D(Collision2D other)

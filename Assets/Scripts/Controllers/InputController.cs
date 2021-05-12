@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Asteroids.Controllers
 {
-    internal class InputController: IInputController, IExecute
+    internal class InputController: IInputController, IExecute, IFixedExecute
     {
         private Ship _ship;
         private Weapon.Weapon _weapon;
@@ -24,8 +24,6 @@ namespace Asteroids.Controllers
             var direction = Input.mousePosition - _camera.WorldToScreenPoint(_player.position);
             _ship.Rotation(direction);
             
-            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
-
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 _ship.AddAcceleration();
@@ -35,11 +33,17 @@ namespace Asteroids.Controllers
             {
                 _ship.RemoveAcceleration();
             }
-
+           
             if (Input.GetButtonDown("Fire1"))
             {
                 _weapon.Fire();
             }
+        }
+
+        public void FixedExecute()
+        {
+            _ship.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Time.deltaTime);
+
         }
     }
 }
