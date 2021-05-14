@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Asteroids
+namespace Asteroids.ControllableUnit
 {
     internal sealed class RotationShip : IRotation
     {
